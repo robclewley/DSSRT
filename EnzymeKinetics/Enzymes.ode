@@ -1,0 +1,19 @@
+# Enzymes.ode XPP demo for simple enzyme kinetic model
+# Rob Clewley 2004
+
+s' = -kf * eb*e * s + (kf * s + kb) * c
+c' =  kf * eb*e * s - (kf * s + kb + k2) * c
+e' = 0
+d' = 0
+
+par kf=3, kb=1, eb=10, k2=1
+
+init s=10, c=0, e=1, d=1
+
+##### Auxillaries ...
+
+#### END AUXILLIARIES
+
+@ total=10, xhi=80, ylo=-100, yhi=44
+@ method=runge, dt=0.01, bounds=100000, maxstor=6000, delay=2
+done

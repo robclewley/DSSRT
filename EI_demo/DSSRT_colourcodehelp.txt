@@ -1,0 +1,12 @@
+Nodes:     all:  no active or potentiated variables      =   dotted blue circle
+          cell:  internal variable m or n potentiated    =   green circle
+                 internal variable m active only         =   red circle
+                 internal variable n active only         =   yellow circle
+                 both m and n active                     =   black circle
+                 m active, n potentiated                 =   dotted red circle
+                 n active, m potentiated                 =   dotted yellow circle
+        others:  internal variable potentiated           =   green circle
+                 internal variable active                =   red circle
+Links:     all:  source not active or pot. in recipient  =   no arrow
+                 source potentiated in recipient         =   green arrow
+                 source active in recipient              =   red arrow

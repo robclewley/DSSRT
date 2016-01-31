@@ -1,0 +1,16 @@
+Converting the DEs for the kinetic model to work with DSSRT:
+--------------------------------------------------------------------------
+
+Original reduced form of equations:
+
+s' = -kf * eb * s + (kf * s + kb) * c
+c' =  kf * eb * s - (kf * s + kb + k2) * c
+
+Re-arranged form of equations for DSSRT:
+
+s' = kf * eb*e * (0 - s)  -  kf * c * ( -kb/kf - s )
+c' = kf * s * (eb - c)  +  (kb + k2) * d * ( 0 - c )
+e' = 0   ( dummy gating variable )
+d' = 0   ( dummy gating variable )
+
+Note that the "target" value for input `s` to the equation for `c` is `e`, which in this simplified form of the kinetics model is e-bar (`eb`). This is a constant, but has a dummy gating variable associated with it (always equal to 1) when it appears as an input (as it does for the equation for `s`). But for the target value the constant is simply `eb`.  The dummy variable `d` (always 1) is the input 'variable' to the second term of the equation for `c`.

@@ -1,0 +1,36 @@
+# Approximation to Fitzhugh-Nagumo oscillator with a synaptic input
+# for DSSRT analysis
+#
+# transform from original FHN:
+# x'=a*x-b*x^3 - y + I + g*s(t)*(rev - x)
+# y'=(tanh(5*x)-y)/tau
+
+# Variable u represents x, v represents y
+# New dummy variable w follows value of u (i.e. x) closely ( with time-scale tau_w )
+# k is a dummy gating variable for the -a*u term in u'
+
+k'=0
+v'=(tanh(5*u)-v)/tau
+w'=(u-w)/ tau_w
+u'=-a*u - b*w^2*u - v + I*ib + g*s*(rev - u)
+
+s'=ai*heavy(u2)*(1-s)-bi*s
+I' = 0
+
+par tau=10, a=-1.35,b=0.7, tau_w=0.05, g=0, rev=-2, ai=2, bi=0.07, ib=0.2
+
+init k=1,u=-1.0, v=-1.0, w=-1.0, I=1
+
+## Other functions
+# for representing inhibitory cell (assumes spike lasts 1ms)
+heavy(v)=1.0+tanh(v/4)
+par iphase=30, pd=50
+u2 = 120*heav( sin(2*3.1415927*((t-iphase-0.5)/pd+0.25)) - sin( 3.1415927*(pd+2)/(2*pd) ) ) - 80
+
+# quasi-static fixed point for u (as a model of that of x)
+# (may be stable or unstable)
+# x0eff = (v-I*ib+g*s*rev) / ( - a*k - b*w^2 - g*s)
+
+@ method=euler, total=350, dt=0.05, bounds=10000000, njmp=2
+
+done

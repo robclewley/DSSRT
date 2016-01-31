@@ -1,0 +1,156 @@
+## Set file for C:\Documents and Settings\Robert Clewley\My Documents\DSSRT\EnzymeKinetics\Enzymes.ode on Thu May 20 14:58:41 2004
+4   Number of equations and auxiliaries
+4   Number of parameters
+# Numerical stuff
+1    nout
+40    nullcline mesh
+3   Runge-Kutta
+10  total
+0.01  DeltaT
+0  T0
+0  Transient
+1000000  Bound
+1e-012  DtMin
+1  DtMax
+1e-005  Tolerance
+20  Max Delay
+100   Eigenvector iterates
+0.001  Eigenvector tolerance
+0.001  Newton tolerance
+0  Poincare plane
+1e-005  Boundary value tolerance
+1e-005  Boundary value epsilon
+20   Boundary value iterates
+0   Poincare None
+1   Poincare variable
+1   Poincare sign
+0   Stop on Section
+1   Delay flag
+9.999999999999831  Current time
+9.999999999999831  Last Time
+1   MyStart
+1   INFLAG
+# Delays
+0.0
+0.0
+0.0
+0.0
+# Bndry conds
+0
+0
+0
+0
+# Old ICs
+10  S
+0  C
+1  E
+1  D
+# Ending  ICs
+2.405070177145624e-005  S
+0.0006982191586059381  C
+1  E
+1  D
+# Parameters
+3  kf
+1  kb
+10  eb
+1  k2
+# Graphics
+0.7071097251469876  rm
+-0.4999999999826661  rm
+0.4999958366025516  rm
+0.7071038372138505  rm
+0.5000041633974484  rm
+-0.4999999999826661  rm
+0  rm
+0.7071038372138505  rm
+0.7071097251469876  rm
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+-1000   
+1000   
+0    
+0   3DFlag
+1   Timeflag
+0   Colorflag
+0   Type
+1  color scale
+0   minscale
+10   xmax
+0   xmin
+10   ymax
+2.405070154054556e-005   ymin
+12   zmax
+-12   zmin
+5   
+0.2   
+5.00001202535077   
+0.2000004810151877   
+0   
+0.08333333333333333   
+45   Theta
+45   Phi
+0    xshft
+0    yshft
+0    zshft
+0   xlo
+2.405070154054556e-005   ylo
+0   
+-100   
+10   xhi
+10   yhi
+80   
+44   
+RHS etc ...
+dS/dT= -KF * EB*E * S + (KF * S + KB) * C  
+dC/dT=  KF * EB*E * S - (KF * S + KB + K2) * C  
+dE/dT= 0  
+dD/dT= 0  

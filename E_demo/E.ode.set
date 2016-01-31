@@ -1,0 +1,203 @@
+## Set file for C:\Documents and Settings\Robert Clewley\My Documents\Functional Network Software\E_demo\E.ode on Wed Feb 04 18:16:18 2004
+13   Number of equations and auxiliaries
+16   Number of parameters
+# Numerical stuff
+1    nout
+40    nullcline mesh
+3   Runge-Kutta
+200  total
+0.01  DeltaT
+0  T0
+0  Transient
+1000000  Bound
+1e-012  DtMin
+1  DtMax
+1e-005  Tolerance
+20  Max Delay
+100   Eigenvector iterates
+0.001  Eigenvector tolerance
+0.001  Newton tolerance
+0  Poincare plane
+1e-005  Boundary value tolerance
+1e-005  Boundary value epsilon
+20   Boundary value iterates
+0   Poincare None
+1   Poincare variable
+1   Poincare sign
+0   Stop on Section
+1   Delay flag
+199.9999999999631  Current time
+199.9999999999631  Last Time
+1   MyStart
+1   INFLAG
+# Delays
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+# Bndry conds
+0
+0
+0
+0
+0
+0
+0
+# Old ICs
+0  MU1
+0  NU1
+-80  U1
+0  SI
+1  IU1
+1  L1
+1  HU1
+# Ending  ICs
+0.02014321489095802  MU1
+0.04418921534899272  NU1
+-65.42543192906001  U1
+0.1397950696816432  SI
+1  IU1
+1  L1
+0.995394010189981  HU1
+# Parameters
+100  gn
+80  gk
+0.1  gl
+50  vna
+-100  vk
+-67  vl
+-80  rev_i
+0  rev_e
+5  ae
+0.6  be
+2  ai
+0.0667  bi
+1.3  ib1
+0.4  gie
+20  iphase
+50  pd
+# Graphics
+0.7071097251469876  rm
+-0.4999999999826661  rm
+0.4999958366025516  rm
+0.7071038372138505  rm
+0.5000041633974484  rm
+-0.4999999999826661  rm
+0  rm
+0.7071038372138505  rm
+0.7071097251469876  rm
+0    
+3    
+2    
+1    
+0    
+0    
+8    
+2    
+1    
+10    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+-1000   
+1000   
+0    
+0   3DFlag
+1   Timeflag
+0   Colorflag
+0   Type
+1  color scale
+0   minscale
+176.874   xmax
+104.497   xmin
+50   ymax
+-100   ymin
+12   zmax
+-12   zmin
+140.6855   
+0.02763308785940285   
+-25   
+0.01333333333333333   
+0   
+0.08333333333333333   
+45   Theta
+45   Phi
+0    xshft
+0    yshft
+0    zshft
+104.497   xlo
+-100   ylo
+0   
+-100   
+176.874   xhi
+50   yhi
+80   
+44   
+RHS etc ...
+dMU1/dT=MA(U1)*(1-MU1)-MB(U1)*MU1  
+dNU1/dT=NA(U1)*(1-NU1)-NB(U1)*NU1  
+dU1/dT= -IION(U1,HU1,NU1,MU1)-SYN(GIE,U1,SI,REV_I)+IB1*IU1  
+dSI/dT=AI*HEAVY(U2)*(1-SI)-BI*SI  
+dIU1/dT=0  
+dL1/dT=0  
+dHU1/dT=HA(U1)*(1-HU1)-HB(U1)*HU1  
+U2AUX= U2  
+VQ1= (GIE*SI*REV_I + GL*VL + IB1 + GN*MU1^3*HU1*VNA + GK*NU1^4*VK)/(GIE*SI + GL + G
+MINF= MA(U1)/(MA(U1)+MB(U1))  
+MTAU= 1/(MA(U1)+MB(U1))  
+M_ERR= MA(U1)/(MA(U1)+MB(U1)) - MU1  
+VTAU= 1/(GN*MU1^3*HU1 + GK*NU1^4 + GL + GIE*SI)  
+
+where ...
+U2 =  120*HEAV( SIN(2*3.1415927*((T-IPHASE-0.5)/PD+0.25)) - SIN( 3.1415927*(PD+2)/(2*PD) ) ) - 80   
+
+User-defined functions:
+IION(VX,HX,NX,MX) = GN*MX^3*HX*(VX-VNA)+GK*NX^4*(VX-VK) + GL*(VX-VL)  
+SYN(G,VX,SX,VREV) = G*SX*(VX-VREV)  
+MA(V) = 0.32*(V+54)/(1-EXP(-(V+54)/4))  
+MB(V) = 0.28*(V+27)/(EXP((V+27)/5)-1)  
+HA(V) = .128*EXP(-(50+V)/18)  
+HB(V) = 4/(1+EXP(-(V+27)/5))  
+NA(V) = .032*(V+52)/(1-EXP(-(V+52)/5))  
+NB(V) = .5*EXP(-(57+V)/40)  
+HEAVY(V) = 1.0+TANH(V/4)  

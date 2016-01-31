@@ -1,0 +1,181 @@
+## Set file for C:\Documents and Settings\Robert Clewley\My Documents\Functional Network Software\FHN_demo\fhn_syn1_FNS_tester.ode on Mon Feb 02 22:40:06 2004
+6   Number of equations and auxiliaries
+13   Number of parameters
+# Numerical stuff
+2    nout
+40    nullcline mesh
+3   Runge-Kutta
+250  total
+0.03  DeltaT
+0  T0
+0  Transient
+10000000  Bound
+1e-012  DtMin
+1  DtMax
+1e-005  Tolerance
+0  Max Delay
+100   Eigenvector iterates
+0.001  Eigenvector tolerance
+0.001  Newton tolerance
+0  Poincare plane
+1e-005  Boundary value tolerance
+1e-005  Boundary value epsilon
+20   Boundary value iterates
+0   Poincare None
+1   Poincare variable
+1   Poincare sign
+0   Stop on Section
+0   Delay flag
+250.0200000000087  Current time
+250.0200000000087  Last Time
+0   MyStart
+1   INFLAG
+# Delays
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+# Bndry conds
+0
+0
+0
+0
+0
+0
+# Old ICs
+1  K
+1  V
+0.7  W
+0.7  U
+0  S
+1  I
+# Ending  ICs
+1  K
+-0.9593734636225386  V
+-1.091809160724977  W
+-1.08978656440648  U
+0.2550075116737575  S
+1  I
+# Parameters
+5  tau
+-1.35  a
+0.45  b
+0.05  tau_w
+1  g
+-2  rev
+2  ai
+0.07000000000000001  bi
+0.2  ib
+190  ton
+2  Vpert
+30  iphase
+50  pd
+# Graphics
+0.7071097251469876  rm
+-0.4999999999826661  rm
+0.4999958366025516  rm
+0.7071038372138505  rm
+0.5000041633974484  rm
+-0.4999999999826661  rm
+0  rm
+0.7071038372138505  rm
+0.7071097251469876  rm
+0    
+4    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+0    
+1    
+2    
+1    
+0    
+-1000   
+1000   
+0    
+0   3DFlag
+1   Timeflag
+0   Colorflag
+0   Type
+1  color scale
+0   minscale
+250.0200042724609   xmax
+0   xmin
+2.071800231933594   ymax
+-1.879521131515503   ymin
+12   zmax
+-12   zmin
+125.0100021362305   
+0.00799935991449903   
+0.09613955020904541   
+0.5061597921395606   
+0   
+0.08333333333333333   
+45   Theta
+45   Phi
+0    xshft
+0    yshft
+0    zshft
+0   xlo
+-1.879521131515503   ylo
+0   
+-1   
+250.0200042724609   xhi
+2.071800231933594   yhi
+20   
+1   
+RHS etc ...
+dK/dT=0  
+dV/dT=(TANH(5*U)-V)/TAU  
+dW/dT=(U-W)/ TAU_W  
+dU/dT=-A*U - B*W^2*U - V + I*IB + G*S*(REV - U)  
+dS/dT=AI*HEAVY(U2)*(1-S)-BI*S  
+dI/dT= 0  
+
+where ...
+U2 =  120*HEAV( SIN(2*3.1415927*((T-IPHASE-0.5)/PD+0.25)) - SIN( 3.1415927*(PD+2)/(2*PD) ) ) - 80   
+
+User-defined functions:
+HEAVY(V) = 1.0+TANH(V/4)  

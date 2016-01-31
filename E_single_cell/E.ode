@@ -1,0 +1,59 @@
+# E.ode XPP demo for a single E cell in DSSRT
+# u1 is an E-cell
+
+## Cell membrane parameters
+p gn=100,gk=80,gl=0.1
+p vna=50,vk=-100,vl=-67
+
+## Chemical coupling parameters
+par ib1=0.32
+
+#### HH type equations
+### observable ('external') variables
+mu1'=ma(u1)*(1-mu1)-mb(u1)*mu1
+nu1'=na(u1)*(1-nu1)-nb(u1)*nu1
+
+u1'= -iion(u1,hu1,nu1,mu1)+ib1*iu1
+
+iu1'=0
+
+L1'=0
+
+### internal variables
+hu1'=ha(u1)*(1-hu1)-hb(u1)*hu1
+
+
+## Current equations
+iion(vx,hx,nx,mx)=gn*mx^3*hx*(vx-vna)+gk*nx^4*(vx-vk) + gl*(vx-vl)
+
+## Activation equations
+ma(v)=0.32*(v+54)/(1-exp(-(v+54)/4))
+mb(v)=0.28*(v+27)/(exp((v+27)/5)-1)
+ha(v)=.128*exp(-(50+v)/18)
+hb(v)=4/(1+exp(-(v+27)/5))
+na(v)=.032*(v+52)/(1-exp(-(v+52)/5))
+nb(v)=.5*exp(-(57+v)/40)
+
+## Other functions
+heavy(v)=1.0+tanh(v/4)
+
+## Initial conditions (only for non-zero)
+init u1=-80, hu1=1
+# these are unit constants, because they represent dummy gating variables
+init iu1=1, L1=1
+
+##### Auxillaries ...
+# other auxilliaries ( not read by DSSRT )
+aux Vq1 = (gl*vl + ib1 + gn*mu1^3*hu1*vna + gk*nu1^4*vk)/(gl + gn*mu1^3*hu1 + gk*nu1^4)
+
+aux minf = ma(u1)/(ma(u1)+mb(u1))
+aux mtau = 1/(ma(u1)+mb(u1))
+aux m_err = ma(u1)/(ma(u1)+mb(u1)) - mu1
+aux Vtau = 1/(gn*mu1^3*hu1 + gk*nu1^4 + gl)
+# This is just g_tot
+
+#### END AUXILLIARIES
+
+@ total=200, xhi=80, ylo=-100, yhi=44
+@ method=runge, dt=0.01, bounds=1000000, maxstor=60000, delay=20
+done

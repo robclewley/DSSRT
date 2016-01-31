@@ -1,0 +1,74 @@
+# EI.ode XPP demo for FNS
+# u1 is an E-cell
+# u2 is an I-cell
+
+## Cell membrane parameters
+p gn=100,gk=80,gl=0.1
+p vna=50,vk=-100,vl=-67,ib1=3, ib2=1
+
+## Chemical coupling parameters
+p rev_i=-80, rev_e=0
+par ae=5, be=0.6, ai=2, bi=0.0667
+
+#### HH type equations
+## all external variables
+
+u[1..2]'= -iion(u[j],hu[j],nu[j],mu[j])-synu[j]+ib[j]
+
+su1'=ae*heavy(u1)*(1-su1)-be*su1
+su2'=ai*heavy(u2)*(1-su2)-bi*su2
+
+L1'=0
+L2'=0
+
+iu1'=0
+iu2'=0
+
+## all internal variables
+
+hu[1..2]'=ha(u[j])*(1-hu[j])-hb(u[j])*hu[j]
+mu[1..2]'=ma(u[j])*(1-mu[j])-mb(u[j])*mu[j]
+nu[1..2]'=na(u[j])*(1-nu[j])-nb(u[j])*nu[j]
+
+
+## Current equations
+iion(vx,hx,nx,mx)=gn*mx^3*hx*(vx-vna)+gk*nx^4*(vx-vk) + gl*(vx-vl)
+syn(g,vx,sx,vrev)=g*sx*(vx-vrev)
+
+synu1=syn(gie,u1,su2,rev_i)
+synu2=syn(gei,u2,su1,rev_e)
+
+## Applied currents, stimulus
+# these are unit constants, because they represent dummy gating variables
+init iu1=1, iu2=1, L1=1, L2=1
+
+## Connectivity
+par gie=0.5, gei=0.2, ton=205, Vpert=-60
+
+# perturbation of a variable to value Vpert, at t=ton, to test AttEst.m predictions
+global 1 t-ton {u1=Vpert}
+
+
+## Activation equations
+ma(v)=0.32*(v+54)/(1-exp(-(v+54)/4))
+mb(v)=0.28*(v+27)/(exp((v+27)/5)-1)
+ha(v)=.128*exp(-(50+v)/18)
+hb(v)=4/(1+exp(-(v+27)/5))
+na(v)=.032*(v+52)/(1-exp(-(v+52)/5))
+nb(v)=.5*exp(-(57+v)/40)
+
+heavy(v)=1.0+tanh(v/4)
+
+## Initial conditions (only for non-zero)
+init u1=-70, u2=-80, hu1=1, hu2=1, su2=0.5
+
+##### Auxillaries not read by FNS
+
+aux Vq1 = (gie*su2*rev_i + gl*vl + ib1 + gn*mu1^3*hu1*vna + gk*nu1^4*vk)/(gie*su2 + gl + gn*mu1^3*hu1 + gk*nu1^4)
+aux Vq2 = (gei*su1*rev_e + gl*vl + ib2 + gn*mu2^3*hu2*vna + gk*nu2^4*vk)/(gei*su1 + gl + gn*mu2^3*hu2 + gk*nu2^4)
+
+#### END AUXILLIARIES
+
+@ total=200, xhi=80, ylo=-100, yhi=44
+@ method=runge, dt=0.0201, bounds=1000000, maxstor=60000
+done

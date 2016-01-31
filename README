@@ -1,0 +1,15 @@
+README file for Dominant-Scale System Reduction Tool
+====================================================
+
+See DSSRT_documentation.rtf in the Documentation folder to get started,
+or type 'DSSRT' at the Matlab prompt from inside your DSSRT folder.
+
+Note that questdlg.m and inputdlg.m are slightly modified versions of
+the Mathworks functions of the same name. Search the files for 'RHC:'
+so see what has been changed -- mainly default figure sizes.
+
+The license agreement for this open source software is given in the
+file LICENSE.
+
+Thanks go to Steve Epstein at Boston University for suggesting the name
+f this software tool.
